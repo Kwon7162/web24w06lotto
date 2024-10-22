@@ -5,12 +5,13 @@ import kotlin.random.Random
 
 @Service
 class LottoService {
-        fun getLuckyNumbers(): Array<Int> {
-            val numbers = arrayOf(0,0,0,0,0,0)
+        fun getLuckyNumbers(): IntArray {
+            val numbers = mutableSetOf<Int>()
 
-            for(i in numbers.indices)
-                numbers[i] = Random.nextInt(45) + 1
+            while (numbers.size < 6) {
+                numbers.add(Random.nextInt(1, 46))
+            }
 
-            return numbers
+            return numbers.toSortedSet().toIntArray()
         }
 }
